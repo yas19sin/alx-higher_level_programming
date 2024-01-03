@@ -1,4 +1,3 @@
 #!/usr/bin/python3
-for char in range(ord('z'), ord('a') - 1, -1):
-    print("{}".format(chr(char)), end="")
-print()
+for alpha in range(ord('a'), ord('z') + 1):
+    print("{}".format(chr(alpha)), end='')
