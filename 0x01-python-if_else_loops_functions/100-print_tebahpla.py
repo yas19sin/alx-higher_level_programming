@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 
-for i in range(122, 96, -1):
-    if i % 2 == 0:
-        letter = i
-    else:
-        letter = i - 32
-    print("{:c}".format(letter), end="")
+for char in range(122, 96, -1):
+    if char % 2 == 1:
+        char -= 32
+    print("{}".format(chr(char)), end="")
 print()
