@@ -1,0 +1,34 @@
+Using ``text_indentation``
+-----------------------
+
+Prints a text with 2 new lines after ., ? and : characters.
+
+First import ``text_indentation``
+
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Now use it:
+
+Basic usage:
+    >>> text_indentation("This is a simple text. With some punctuation? And colons:")
+    This is a simple text.
+    <BLANKLINE>
+    With some punctuation?
+    <BLANKLINE>
+    And colons:
+    <BLANKLINE>
+    <BLANKLINE>
+
+Empty text:
+    >>> text_indentation("")
+    <BLANKLINE>
+
+No punctuation or colons:
+    >>> text_indentation("No punctuation or colons here")
+    No punctuation or colons here
+
+Non-string text:
+    >>> text_indentation(123)
+    Traceback (most recent call last):
+    <BLANKLINE>
+    TypeError: text must be a string
