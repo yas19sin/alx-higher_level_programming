@@ -1,6 +1,13 @@
 #!/usr/bin/python3
+"""
+Defines a class BaseGeometry with an integer validator method
+"""
+
+
 class BaseGeometry:
-    """A class representing base geometry."""
+    """
+    Represents a base geometry class with an integer validator method
+    """
 
     def area(self):
         """Raises an Exception with the message 'area() is not implemented'."""
