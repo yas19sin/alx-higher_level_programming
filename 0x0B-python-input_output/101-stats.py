@@ -1,40 +1,43 @@
 #!/usr/bin/python3
-"""
-Log parsing module
-"""
-import sys
+""" Reads from standard input and computes metrics """
 
 
-def print_stats(file_size, status_codes):
-    """Print statistics"""
-    print("File size: {:d}".format(file_size))
-    for status, count in sorted(status_codes.items()):
-        print("{}: {}".format(status, count))
+def print_stats(size, status_codes):
+    """ Print accumulated metrics """
+    print("File size: {}".format(size))
+    for key in sorted(status_codes):
+        print("{}: {}".format(key, status_codes[key]))
 
 
 if __name__ == "__main__":
-    file_size = 0
-    status_codes = {"200": 0, "301": 0, "400": 0, "401": 0,
-                    "403": 0, "404": 0, "405": 0, "500": 0}
-    line_count = 0
+    import sys
+
+    size = 0
+    status_codes = {}
+    valid_codes = {'200', '301', '400', '401', '403', '404', '405', '500'}
+    count = 0
 
     try:
         for line in sys.stdin:
-            line_count += 1
+            if count == 10:
+                print_stats(size, status_codes)
+                count = 0
+
+            count += 1
+
             tokens = line.split()
             if len(tokens) >= 2:
                 try:
-                    file_size += int(tokens[-1])
+                    size += int(tokens[-1])
                 except ValueError:
                     pass
-                status_code = tokens[-2]
-                if status_code in status_codes:
-                    status_codes[status_code] += 1
 
-            if line_count % 10 == 0:
-                print_stats(file_size, status_codes)
+                status_code = tokens[-2]
+                if status_code in valid_codes:
+                    status_codes[status_code] = (
+                            status_codes.get(status_code, 0) + 1)
+
+        print_stats(size, status_codes)
 
     except KeyboardInterrupt:
-        pass
-    finally:
-        print_stats(file_size, status_codes)
+        print_stats(size, status_codes)

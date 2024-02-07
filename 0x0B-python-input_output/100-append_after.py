@@ -1,16 +1,19 @@
 #!/usr/bin/python3
 """
-Search and update module
+Module for appending text after
+specific lines in a file
 """
 
 
 def append_after(filename="", search_string="", new_string=""):
-    """Insert a line of text after each line containing a specific string"""
-    with open(filename, 'r+', encoding='utf-8') as file:
-        lines = file.readlines()
-        for i, line in enumerate(lines):
+    """Append new_string after each line
+        containing search_string in the file"""
+    with open(filename, 'r') as f:
+        lines = f.readlines()
+        new_lines = []
+        for line in lines:
+            new_lines.append(line)
             if search_string in line:
-                lines.insert(i + 1, new_string)
-        file.seek(0)
-        file.truncate()
-        file.writelines(lines)
+                new_lines.append(new_string)
+    with open(filename, 'w') as f:
+        f.writelines(new_lines)

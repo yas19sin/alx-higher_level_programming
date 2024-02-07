@@ -13,11 +13,14 @@ class Student:
         self.last_name = last_name
         self.age = age
 
-    def to_json(self):
+    def to_json(self, attrs=None):
         """Return the dictionary representation of a Student instance"""
-        return self.__dict__
+        if attrs is None:
+            return self.__dict__
+        return {key: self.__dict__[key]
+                for key in attrs if key in self.__dict__}
 
     def reload_from_json(self, json):
         """Replace all attributes of the Student
             instance with the given dictionary"""
-        self.__dict__ = json
+        self.__dict__.update(json)
