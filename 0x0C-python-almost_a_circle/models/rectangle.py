@@ -1,19 +1,36 @@
 #!/usr/bin/python3
-"""Rectangle module"""
+"""rectangle module"""
+
 from models.base import Base
 
 
 class Rectangle(Base):
-    """Class representing a rectangle."""
+    """represents a rectangle object"""
 
     def __init__(self, width, height, x=0, y=0, id=None):
-        """Initialize a new instance of the Rectangle class."""
-        super().__init__(id)
+        """Initializes a Rectangle Object"""
+        if type(width) != int:
+            raise TypeError("width must be an integer")
+        if width <= 0:
+            raise ValueError("width must be > 0")
         self.width = width
+        if type(height) != int:
+            raise TypeError("height must be an integer")
+        if height <= 0:
+            raise ValueError("height must be > 0")
         self.height = height
+        if type(x) != int:
+            raise TypeError("x must be an integer")
+        if x < 0:
+            raise ValueError("x must be >= 0")
         self.x = x
+        if type(y) != int:
+            raise TypeError("y must be an integer")
+        if y < 0:
+            raise ValueError("y must be >= 0")
         self.y = y
-    
+        super().__init__(id)
+
     @property
     def width(self):
         """getter for width"""
@@ -131,18 +148,7 @@ class Rectangle(Base):
                         self.y = value
 
     def to_dictionary(self):
-        """Return the dictionary representation of a Rectangle."""
-        return {
-            "id": self.id,
-            "width": self.width,
-            "height": self.height,
-            "x": self.x,
-            "y": self.y,
-        }
-
-    @staticmethod
-    def create(**dictionary):
-        """Return a new instance of Rectangle using a dictionary."""
-        new_rect = Rectangle(1, 1)  # dummy instance
-        new_rect.update(**dictionary)
-        return new_rect
+        """returns dictionary representation
+        of rectangle"""
+        return {"id": self.id, "width": self.width,
+                "height": self.height, "x": self.x, "y": self.y}
