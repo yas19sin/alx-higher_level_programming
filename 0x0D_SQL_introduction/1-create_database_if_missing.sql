@@ -1,3 +1,3 @@
--- script that creates database hbtn_0c_0
--- does not fail
+-- this script creates a database hbtn_0c_0
+-- will not fail
 CREATE DATABASE IF NOT EXISTS hbtn_0c_0;
