@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-"""Select all states from the database hbtn_0e_0_usa and print them.
-
-Usage: python3 0-select_states.py <user> <password> <database>
-"""
+"""Select all states from the database hbtn_0e_0_usa and print them."""
 import sys
 import MySQLdb
 
