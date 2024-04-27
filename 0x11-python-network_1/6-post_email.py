@@ -1,8 +1,8 @@
 """A script that retrieves and displays the value of the X-Request-Id
 header variable when sending a request to a URL.
 """
-from sys
-from urllib.request
+import sys
+import urllib.request
 
 if __name__ == "__main__":
     url = sys.argv[1]
